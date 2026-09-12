@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import defaultProfilePhoto from '../assets/profile.jpg';
 import { personalInfo } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
 import { LinkedinIcon } from './SocialIcons';
@@ -197,9 +198,10 @@ export const Hero = () => {
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full p-1.5 bg-gradient-to-tr from-emerald-400 via-cyan-400 to-indigo-500 shadow-2xl">
                 <div className="w-full h-full rounded-full overflow-hidden bg-slate-950 relative flex items-center justify-center border-4 border-slate-900">
                   
-                  {profilePhoto ? (
+                  {/* Use localStorage photo > default static photo > initials fallback */}
+                  {profilePhoto || defaultProfilePhoto ? (
                     <img
-                      src={profilePhoto}
+                      src={profilePhoto || defaultProfilePhoto}
                       alt={personalInfo.name}
                       className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
