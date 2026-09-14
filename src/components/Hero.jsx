@@ -5,7 +5,6 @@ import { usePortfolio } from '../context/PortfolioContext';
 import { LinkedinIcon } from './SocialIcons';
 import { 
   Camera, 
-  Trash2, 
   Upload, 
   MapPin, 
   Mail, 
@@ -15,15 +14,13 @@ import {
   Sparkles, 
   Code, 
   ShieldCheck, 
-  GraduationCap, 
-  CheckCircle2 
+  GraduationCap
 } from 'lucide-react';
 
 export const Hero = () => {
   const { 
     profilePhoto, 
     updateProfilePhoto, 
-    removeProfilePhoto, 
     openResumeModal, 
     showToast,
     customResume,
@@ -242,11 +239,6 @@ export const Hero = () => {
                 id="hero-avatar-upload"
               />
 
-              {/* Floating Badge on Avatar */}
-              <div className="absolute -bottom-2 right-4 sm:right-6 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 text-xs text-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span className="font-medium">Verified Student</span>
-              </div>
             </div>
 
             {/* Avatar Actions Bar */}
@@ -258,22 +250,7 @@ export const Hero = () => {
                 <Upload className="w-3.5 h-3.5 text-emerald-400" />
                 <span>{profilePhoto ? 'Change Photo' : 'Upload Photo'}</span>
               </button>
-
-              {profilePhoto && (
-                <button
-                  onClick={removeProfilePhoto}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900/90 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-800 hover:border-rose-500/30 transition-colors shadow-sm"
-                  title="Remove custom photo and reset to VM initials"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  <span>Reset</span>
-                </button>
-              )}
             </div>
-
-            <p className="text-[11px] text-slate-500 mt-2 text-center">
-              Photos persist in your browser storage (localStorage)
-            </p>
           </div>
         </div>
 
