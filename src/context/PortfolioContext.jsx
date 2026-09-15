@@ -7,7 +7,7 @@ export const PortfolioProvider = ({ children }) => {
   // 1. Profile Photo State with LocalStorage persistence
   const [profilePhoto, setProfilePhoto] = useState(() => {
     try {
-      return localStorage.getItem('vm_portfolio_avatar') || null;
+      return localStorage.getItem('vm_portfolio_avatar_v2') || null;
     } catch {
       return null;
     }
@@ -66,7 +66,7 @@ export const PortfolioProvider = ({ children }) => {
   // Profile Photo Handlers
   const updateProfilePhoto = (base64String) => {
     try {
-      localStorage.setItem('vm_portfolio_avatar', base64String);
+      localStorage.setItem('vm_portfolio_avatar_v2', base64String);
       setProfilePhoto(base64String);
       showToast('success', 'Photo Updated', 'Your profile picture has been saved successfully.');
     } catch (e) {
@@ -77,7 +77,7 @@ export const PortfolioProvider = ({ children }) => {
 
   const removeProfilePhoto = () => {
     try {
-      localStorage.removeItem('vm_portfolio_avatar');
+      localStorage.removeItem('vm_portfolio_avatar_v2');
       setProfilePhoto(null);
       showToast('info', 'Photo Removed', 'Reverted back to the default initials avatar.');
     } catch (e) {

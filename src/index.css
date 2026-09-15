@@ -34,10 +34,18 @@
     color: #f1f5f9;
     font-family: var(--font-sans);
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    -webkit-user-drag: none;
   }
 
   /* Custom Modern Scrollbar */
@@ -140,6 +148,26 @@
   animation: floatAnimation 4s ease-in-out infinite;
 }
 
+@keyframes antiGravityFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-16px) rotate(3deg);
+    opacity: 1;
+  }
+}
+
+@keyframes antiGravityDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10px, -14px, 0) scale(1.04);
+  }
+}
+
 @keyframes pulseSlow {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.05); }
@@ -147,6 +175,37 @@
 
 .animate-pulse-slow {
   animation: pulseSlow 6s ease-in-out infinite;
+}
+
+.animate-anti-gravity {
+  animation: antiGravityFloat 5s ease-in-out infinite;
+}
+
+.animate-anti-gravity-delayed {
+  animation: antiGravityFloat 6.5s ease-in-out infinite 0.8s;
+}
+
+.animate-anti-gravity-drift {
+  animation: antiGravityDrift 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.antigravity-orbit {
+  position: absolute;
+  inset: -28px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: inset 0 0 30px rgba(45, 212, 191, 0.08), 0 0 35px rgba(34, 211, 238, 0.08);
 }
 
 /* Print Styles for Resume */

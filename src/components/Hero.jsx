@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
-import defaultProfilePhoto from '../assets/profile.jpg';
+import React from 'react';
+import defaultProfilePhoto from '../assets/profile.png';
 import { personalInfo } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
 import { LinkedinIcon } from './SocialIcons';
 import { 
-  Camera, 
-  Upload, 
   MapPin, 
   Mail, 
   ArrowDown, 
@@ -19,62 +17,12 @@ import {
 
 export const Hero = () => {
   const { 
-    profilePhoto, 
-    updateProfilePhoto, 
+    profilePhoto,
     openResumeModal, 
-    showToast,
     customResume,
     resumeDownloadUrl,
     resumeFileName
   } = usePortfolio();
-  const fileInputRef = useRef(null);
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > 4 * 1024 * 1024) {
-      showToast('error', 'File Too Large', 'Please select an image smaller than 4MB.');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const MAX_DIM = 400;
-        let width = img.width;
-        let height = img.height;
-
-        if (width > height) {
-          if (width > MAX_DIM) {
-            height *= MAX_DIM / width;
-            width = MAX_DIM;
-          }
-        } else {
-          if (height > MAX_DIM) {
-            width *= MAX_DIM / height;
-            height = MAX_DIM;
-          }
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-
-        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.85);
-        updateProfilePhoto(compressedBase64);
-      };
-      img.src = event.target.result;
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleTriggerUpload = () => {
-    fileInputRef.current?.click();
-  };
 
   return (
     <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
@@ -187,12 +135,22 @@ export const Hero = () => {
           {/* Right Column: Interactive Profile Photo Card */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
             <div className="relative group">
+              <div className="antigravity-orbit animate-anti-gravity-drift"></div>
+              <div className="absolute -left-6 top-8 sm:-left-8 sm:top-10 md:left-[-2.5rem] md:top-14 px-3 py-2 rounded-full border border-emerald-400/30 bg-slate-950/80 text-[10px] font-medium text-emerald-300 shadow-lg shadow-emerald-500/10 animate-anti-gravity">
+                AI Builder
+              </div>
+              <div className="absolute -right-3 bottom-12 sm:-right-4 sm:bottom-14 md:-right-3 md:bottom-16 px-3 py-2 rounded-full border border-cyan-400/30 bg-slate-950/80 text-[10px] font-medium text-cyan-300 shadow-lg shadow-cyan-500/10 animate-anti-gravity-delayed">
+                Creative Dev
+              </div>
+              <div className="absolute left-4 -bottom-3 sm:left-6 sm:-bottom-2 md:left-8 md:-bottom-2 px-2.5 py-1.5 rounded-full border border-indigo-400/30 bg-slate-950/80 text-[10px] font-medium text-indigo-300 shadow-lg shadow-indigo-500/10 animate-anti-gravity">
+                Web Apps
+              </div>
               
               {/* Outer Glowing Rings */}
               <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 opacity-60 blur-xl group-hover:opacity-85 group-hover:blur-2xl transition duration-500"></div>
               
               {/* Avatar Container */}
-              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full p-1.5 bg-gradient-to-tr from-emerald-400 via-cyan-400 to-indigo-500 shadow-2xl">
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full p-1.5 bg-gradient-to-tr from-emerald-400 via-cyan-400 to-indigo-500 shadow-2xl animate-anti-gravity-drift">
                 <div className="w-full h-full rounded-full overflow-hidden bg-slate-950 relative flex items-center justify-center border-4 border-slate-900">
                   
                   {/* Use localStorage photo > default static photo > initials fallback */}
@@ -200,6 +158,14 @@ export const Hero = () => {
                     <img
                       src={profilePhoto || defaultProfilePhoto}
                       alt={personalInfo.name}
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
+                      draggable="false"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = defaultProfilePhoto;
+                      }}
                       className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
@@ -215,41 +181,8 @@ export const Hero = () => {
                     </div>
                   )}
 
-                  {/* Interactive Upload Overlay */}
-                  <div 
-                    onClick={handleTriggerUpload}
-                    className="absolute inset-0 bg-black/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center cursor-pointer text-white p-4"
-                  >
-                    <div className="p-3 rounded-full bg-emerald-500/30 border border-emerald-400/50 mb-1.5 text-emerald-300">
-                      <Camera className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs font-semibold">Change Photo</span>
-                    <span className="text-[10px] text-slate-300">JPG, PNG, WebP</span>
-                  </div>
                 </div>
               </div>
-
-              {/* Hidden file input */}
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleImageUpload}
-                accept="image/*"
-                className="hidden"
-                id="hero-avatar-upload"
-              />
-
-            </div>
-
-            {/* Avatar Actions Bar */}
-            <div className="mt-6 flex items-center gap-2">
-              <button
-                onClick={handleTriggerUpload}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/40 transition-colors shadow-sm"
-              >
-                <Upload className="w-3.5 h-3.5 text-emerald-400" />
-                <span>{profilePhoto ? 'Change Photo' : 'Upload Photo'}</span>
-              </button>
             </div>
           </div>
         </div>
