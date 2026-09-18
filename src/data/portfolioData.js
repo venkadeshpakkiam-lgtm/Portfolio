@@ -10,7 +10,7 @@ export const personalInfo = {
   phoneFormatted: "+91 63745 79359",
   linkedin: "https://www.linkedin.com/in/venkadesh-m-14a318357",
   linkedinDisplay: "linkedin.com/in/venkadesh-m-14a318357",
-  github: "https://github.com",
+  github: "https://github.com/venkadeshpakkiam-lgtm",
   careerObjective: "A passionate Computer Science Engineering student looking for an opportunity to start a career in software development, enhance technical knowledge, and contribute effectively to a professional team.",
   availability: "Open to Internships & Entry-Level Roles",
   experienceYears: "Fresher / 2027 Grad",
