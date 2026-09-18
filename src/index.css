@@ -43,13 +43,11 @@
   }
 
   html {
-    min-width: 320px;
     min-height: 100%;
     background: var(--bg);
   }
   
   body {
-    min-width: 320px;
     min-height: 100svh;
     background-color: var(--bg);
     color: var(--text);
