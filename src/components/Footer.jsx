@@ -110,7 +110,7 @@ export const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <span className="text-slate-500">JP College of Engineering (2023–2027)</span>
+                  <span className="text-slate-500">JP College of Engineering ({personalInfo.educationPeriod})</span>
                 </li>
               </ul>
             </div>

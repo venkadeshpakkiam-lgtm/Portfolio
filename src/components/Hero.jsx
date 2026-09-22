@@ -44,7 +44,7 @@ export const Hero = () => {
             <a href={`mailto:${personalInfo.email}`} className="hero-social" aria-label="Email"><Mail className="h-4 w-4" /></a>
           </div>
           <div className="reference-stats mt-12 flex max-w-xl divide-x divide-[#3a3a3a]">
-            <div className="stat-item px-5 first:pl-0 sm:px-7"><strong><GraduationCap className="h-7 w-7 shrink-0" />2023-2027</strong><span>B.E. Computer Science</span></div>
+            <div className="stat-item px-5 first:pl-0 sm:px-7"><strong><GraduationCap className="h-7 w-7 shrink-0" />{personalInfo.educationPeriod}</strong><span>B.E. Computer Science</span></div>
             <div className="stat-item px-5 sm:px-7"><strong>2+</strong><span>Projects Built</span></div>
             <div className="stat-item px-5 last:pr-0 sm:px-7"><strong>4+</strong><span>Certifications Earned</span></div>
           </div>

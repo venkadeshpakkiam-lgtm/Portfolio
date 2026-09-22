@@ -14,6 +14,7 @@ export const personalInfo = {
   careerObjective: "A passionate Computer Science Engineering student looking for an opportunity to start a career in software development, enhance technical knowledge, and contribute effectively to a professional team.",
   availability: "Open to Internships & Entry-Level Roles",
   experienceYears: "Fresher / 2027 Grad",
+  educationPeriod: "2023 – 2027",
 };
 
 export const educationData = [
@@ -21,7 +22,7 @@ export const educationData = [
     id: "be-cse",
     degree: "B.E. Computer Science and Engineering",
     institution: "JP College of Engineering",
-    period: "2023 – 2027",
+    period: personalInfo.educationPeriod,
     status: "Pursuing (Undergraduate)",
     grade: "Good Academic Standing",
     location: "Tenkasi, Tamil Nadu",
