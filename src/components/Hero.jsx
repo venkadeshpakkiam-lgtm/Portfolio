@@ -43,10 +43,10 @@ export const Hero = () => {
             <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hero-social" aria-label="LinkedIn"><LinkedinIcon className="h-4 w-4" /></a>
             <a href={`mailto:${personalInfo.email}`} className="hero-social" aria-label="Email"><Mail className="h-4 w-4" /></a>
           </div>
-          <div className="reference-stats mt-12 flex max-w-xl divide-x divide-[#3a3a3a]">
-            <div className="stat-item px-5 first:pl-0 sm:px-7"><strong><GraduationCap className="h-7 w-7 shrink-0" />{personalInfo.educationPeriod}</strong><span>B.E. Computer Science</span></div>
-            <div className="stat-item px-5 sm:px-7"><strong>2+</strong><span>Projects Built</span></div>
-            <div className="stat-item px-5 last:pr-0 sm:px-7"><strong>4+</strong><span>Certifications Earned</span></div>
+          <div className="reference-stats mt-12 grid max-w-xl grid-cols-[repeat(3,minmax(0,1fr))] divide-x divide-[#3a3a3a]">
+            <div className="stat-item px-2 sm:px-5"><strong><GraduationCap className="h-6 w-6 shrink-0 sm:h-7 sm:w-7" />{personalInfo.educationPeriod}</strong><span>B.E. Computer Science</span></div>
+            <div className="stat-item px-2 sm:px-5"><strong>2+</strong><span>Projects Built</span></div>
+            <div className="stat-item px-2 sm:px-5"><strong>4+</strong><span>Certifications Earned</span></div>
           </div>
         </div>
         <div className="relative flex min-h-[330px] items-end justify-center lg:col-span-5 lg:min-h-[470px] lg:items-start lg:pt-12">
